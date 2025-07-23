@@ -1,0 +1,60 @@
+import art
+import os
+import random
+print(art.logo)
+chosen_number=random.randint(1,100)
+print("WELCOME TO THE NUMBER GUESSING GAME")
+print("I am thinking of a number between 1 and 100. Do you want to know?")
+
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+#defining a function to return true or false after comparison
+def game_logic(chosen, guessed):
+    if guessed > chosen:
+        print("Too High.\nGuess again.")
+        return False
+    elif guessed < chosen:
+        print("Too Low.\nGuess again.")
+        return False
+    else:
+        return True
+
+game_over=False
+lives=int()
+while not game_over:
+    chosen_number = random.randint(1, 100)
+    level=str(input("Choose a level- Easy or Hard: ")).lower().strip().replace(" ","")
+    if level == "hard":
+        lives = 5
+    elif level == "easy":
+        lives = 10
+    else:
+        print("Invalid Input. Please provide valid input.")
+        continue
+
+    while lives>0:
+
+        while True:
+            try:
+                guessed_number = int(input("Guess a number between 1 to 100: "))
+                break
+            except ValueError:
+                print("Invalid Input. Please enter a number.")
+        won=game_logic(chosen=chosen_number,guessed=guessed_number)
+        if won:
+            print(f"Hurray!! You Won. The answer was {chosen_number}")
+            game_over = True
+            break
+        else:
+            lives-=1
+            print(f"You have {lives} attempts left.")
+    else:
+        print(f"Game Over! You've run out of guesses. The number was {chosen_number}.")
+        rerun = input("Do you want to restart? Type 'Yes' or 'No'.").lower().strip()
+        if rerun == "no":
+            game_over = True
+            print("THANK YOU FOR PLAYING. SEE YOU SOON!")
+            clear()
+
+
