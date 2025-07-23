@@ -2,7 +2,7 @@ import art
 import os
 import random
 print(art.logo)
-chosen_number=random.randint(1,100)
+
 print("WELCOME TO THE NUMBER GUESSING GAME")
 print("I am thinking of a number between 1 and 100. Do you want to know?")
 
